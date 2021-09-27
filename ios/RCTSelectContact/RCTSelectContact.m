@@ -61,9 +61,11 @@ RCT_EXPORT_METHOD(openContactSelection:(RCTPromiseResolveBlock)resolve rejecter:
   for (CNLabeledValue<CNPhoneNumber*> *phone in contact.phoneNumbers) {
     CNPhoneNumber* phoneNumber = [phone value];
     NSString* phoneLabel = [phone label];
-    NSMutableDictionary<NSString*, NSString*>* phoneEntry = [[NSMutableDictionary alloc] initWithCapacity:2];
+    NSMutableDictionary<NSString*, NSString*>* phoneEntry = [[NSMutableDictionary alloc] initWithCapacity:4];
     [phoneEntry setValue:[phoneNumber stringValue] forKey:@"number"];
     [phoneEntry setValue:[CNLabeledValue localizedStringForLabel:phoneLabel] forKey:@"type"];
+    [phoneEntry setValue:[phoneNumber valueForKey:@"digits"] forKey:@"digits"];
+    [phoneEntry setValue:[phoneNumber valueForKey:@"countryCode"] forKey:@"countryCode"];
     [phoneEntries addObject:phoneEntry];
   }
   

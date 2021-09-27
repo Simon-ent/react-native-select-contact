@@ -6,7 +6,9 @@ export function selectContactPostalAddress(): Promise<ContactPostalAddressSelect
 
 export interface PhoneEntry {
     number: string,
-    type: string
+    type: string,
+    digits: string,
+    countryCode: string
 }
 
 export interface EmailEntry {
